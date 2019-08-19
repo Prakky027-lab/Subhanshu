@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+   
+<style>
+
+h3   {color:rgb(49, 35, 17)}
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.container {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color: #a084c4;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color: #1a0d63;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      <form #addForm=ngForm >
+      
+        <div class="row">
+          <div class="col-50">
+            <h3>Shipping Address</h3>
+            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+            <!---<input type="text" id="fname" name="firstname" placeholder="John K. Doe">-->
+            <input type="text" class="form-control" name="Name" id="id" [(ngModel)]="Address.name" #idcontrol="ngModel"  aria-describedby="IdHelp" placeholder="John K. Doe" required />
+            <small id="IdHelp" class="form-text text-muted" *ngIf="idcontrol.touched && idcontrol.invalid">*Name field can not be empty</small>
+           
+            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+           <!-- <input type="email" id="email" name="email" placeholder="john@example.com"> -->
+            <input type="email" class="form-control" name="email" id="email" [(ngModel)]="Address.emailId" #emailcontrol="ngModel"  aria-describedby="emailHelp" placeholder="john@example.com" required />
+            <small id="emailHelp" class="form-text text-muted" *ngIf="emailcontrol.touched && emailcontrol.invalid">*Email field is either empty or invalid</small>
+			
+			      <div class="row">
+              <div class="col-50">
+                <br>
+                <label for="Mobile No">Mobile No</label>
+               <!-- <input type="number" id="MobileNo" name="MobileNo" [(ngModel)]="MobileNo" placeholder="*Enter Mobile Number">-->
+                <input type="number" class="form-control" name="MobileNo" id="MobileNo" [(ngModel)]="Address.MobileNo" #MobileNocontrol="ngModel" placeholder="*Enter Mobile Number" required />
+                <small id="MobileNoHelp" class="form-text text-muted" *ngIf="MobileNocontrol.touched && MobileNocontrol.invalid">*Mobile Number is Must</small>
+              </div>
+
+              <div class="col-50">
+                <br>
+                <label for="Alternate Mob">Alternate Mobile Number</label>
+                <input type="number" id="MobileNo2" name="MobileNo2" [(ngModel)]="Address.MobileNo2" placeholder="Alternate Mobile Number(optional)">
+              </div>
+            </div>
+			
+            <label for="adr"><br><i class="fa fa-address-card-o"></i> Address</label>
+            <!--<input type="text" id="adr" name="address" placeholder="542 W. 15th Street">-->
+            <input type="text" class="form-control" name="add" id="add" [(ngModel)]="Address.address" #addcontrol="ngModel"  aria-describedby="addHelp" placeholder="542 W. xyz colony" required />
+            <small id="addHelp" class="form-text text-muted" *ngIf="addcontrol.touched && addcontrol.invalid">*Address field is empty </small>
+            <input type="text" class="form-control" name="add" id="add" [(ngModel)]="Address.address2" #addcontrol="ngModel"  aria-describedby="addHelp" placeholder="Chandni Chowk" required />
+            <small id="addHelp" class="form-text text-muted" *ngIf="addcontrol.touched && addcontrol.invalid">*Address field is empty </small>
+            
+            
+            <label for="city"><i class="fa fa-institution"></i> City</label>
+            <!--<input type="text" id="city" name="city" placeholder="New York">-->
+            <input type="text" class="form-control" name="city" id="city" [(ngModel)]="Address.city" #citycontrol="ngModel"  aria-describedby="cityHelp" placeholder="New Delhi" required />
+            <small id="cityHelp" class="form-text text-muted" *ngIf="citycontrol.touched && citycontrol.invalid">*Enter city Name</small>
+			
+            <div class="row">
+              <div class="col-50">
+                <label for="state">State</label>
+                <!--<input type="text" id="state" name="state" placeholder="New Delhi">-->
+                <input type="text" class="form-control" name="state" id="state" [(ngModel)]="Address.state" #statecontrol="ngModel"  aria-describedby="stateHelp" placeholder="New Delhi" required />
+                <small id="stateHelp" class="form-text text-muted" *ngIf="statecontrol.touched && statecontrol.invalid">*Enter state Name</small>
+              </div>
+
+              <div class="col-50">
+                <label for="zip">PinCode</label>
+                <!--<input type="number" id="zip" name="PinCode" placeholder="10001">-->
+                <input type="number" class="form-control" name="PinCode" id="PinCode" [(ngModel)]="Address.PinCode" #pincontrol="ngModel"  aria-describedby="PinHelp" placeholder="100001" required/>
+                <small id="PinHelp" class="form-text text-muted" *ngIf="pincontrol.touched && pincontrol.invalid">*Enter Proper PinCode</small>
+
+              </div>
+            </div>
+			
+			
+          </div>
+	      </div>
+          
+       <div>
+        <input type="submit" value="ContinueTo checkout" class="btn btn-dark" [disabled]="addForm.invalid" (click)="addData()"/>
+
+       </div>
+        
+      </form>
+    </div>
+  </div>
+ </div>
+</body>
+</html>
